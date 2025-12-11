@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FlowBus</string>
+    <string name="sendGlobalEvent">Send global event</string>
+    <string name="sendActivityEvent">Send Activity event</string>
+    <string name="sendFragmentEvent">Send Fragment event</string>
+    <string name="jumpNextPage1">Open TestActivity</string>
+    <string name="jumpNextPage2">Open TestFragmentActivity</string>
+    <string name="sendCustomEvent">Send custom event</string>
+    <string name="sendCustomEventDelay">Send delayed custom event</string>
+    <string name="sendManyEvent">Send 200 events</string>
+    <string name="sendEventGroup">Send events group</string>
+    <string name="default_placeholder_log_text">----------------------------------------</string>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FlowBus</string>
+    <string name="sendGlobalEvent">发送全局事件</string>
+    <string name="sendActivityEvent">发送Activity事件"</string>
+    <string name="sendFragmentEvent">发送Fragment事件</string>
+    <string name="jumpNextPage1">打开TestActivity</string>
+    <string name="jumpNextPage2">打开TestFragmentActivity</string>
+    <string name="sendCustomEvent">发送自定义事件</string>
+    <string name="sendCustomEventDelay">发送延迟自定义事件</string>
+    <string name="sendManyEvent">发送200次事件</string>
+    <string name="sendEventGroup">发送事件组</string>
+    <string name="default_placeholder_log_text">----------------------------------------</string>
+</resources>

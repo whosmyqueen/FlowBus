@@ -1,0 +1,17 @@
+Alias:   FlowBus
+
+Password： FlowBus
+
+valiate  200 years
+
+first and last name   FlowBus
+
+organizatal unit      FlowBus
+
+organization          FlowBus
+
+city or locaality     FlowBus
+
+state or Province     FlowBus
+
+Country Code(XX)     FlowBus
