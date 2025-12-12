@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
  * @return Job 事件收集的 Job，可用于手动取消订阅。
  */
 @MainThread
-inline fun <reified T> LifecycleOwner.subscribeGlobalEvent(
+inline fun <reified T> LifecycleOwner.subscribeEvent(
     dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
     minLifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
@@ -44,6 +44,7 @@ inline fun <reified T> LifecycleOwner.subscribeGlobalEvent(
         )
 }
 
+
 /**
  * 订阅 **ViewModelStoreOwner (例如 Activity 或 Fragment)** 作用域的事件。
  *
@@ -52,7 +53,7 @@ inline fun <reified T> LifecycleOwner.subscribeGlobalEvent(
  *
  * @receiver ViewModelStoreOwner 提供 FlowEventBus 实例的作用域 (例如 Activity 或 Fragment)。
  * @param T 事件的数据类型。事件名默认为 T 的完整类名。
- * @param lifecycleOwner 用于管理订阅生命周期的所有者。
+ * @param scope 用于管理订阅生命周期的所有者。
  * @param dispatcher 用于执行 [onReceived] lambda 的协程调度器，默认为主线程。
  * @param minLifecycleState 订阅开始收集所需的最小生命周期状态。
  * @param isSticky 事件是否为粘性事件。
@@ -60,16 +61,21 @@ inline fun <reified T> LifecycleOwner.subscribeGlobalEvent(
  * @return Job 事件收集的 Job。
  */
 @MainThread
-inline fun <reified T> ViewModelStoreOwner.subscribeScopeEvent(
-    lifecycleOwner: LifecycleOwner,
+inline fun <reified T> ViewModelStoreOwner.subscribeEvent(
+    scope: LifecycleOwner,
     dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
     minLifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
 ): Job {
-    return ViewModelProvider(this).get(FlowEventBus::class.java)
+    val owner = if (scope is ViewModelStoreOwner){
+        scope
+    }else{
+        this
+    }
+    return ViewModelProvider(owner).get(FlowEventBus::class.java)
         .subscribe(
-            lifecycleOwner,
+            scope,
             T::class.java.name,
             minLifecycleState,
             dispatcher,
@@ -91,7 +97,7 @@ inline fun <reified T> ViewModelStoreOwner.subscribeScopeEvent(
  * @return Job 事件收集的 Job。
  */
 @MainThread
-inline fun <reified T> CoroutineScope.subscribeGlobalEvent(
+inline fun <reified T> CoroutineScope.subscribeEvent(
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
 ): Job = this.launch {
@@ -116,7 +122,7 @@ inline fun <reified T> CoroutineScope.subscribeGlobalEvent(
  * @return Job 事件收集的 Job。
  */
 @MainThread
-inline fun <reified T> CoroutineScope.subscribeScopeEvent(
+inline fun <reified T> CoroutineScope.subscribeEvent(
     scope: ViewModelStoreOwner,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit

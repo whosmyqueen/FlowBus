@@ -70,15 +70,15 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun subscribeGlobalEvents() {
         //监听
-        subscribeGlobalEvent<GlobalEvent> {
+        subscribeEvent<GlobalEvent> {
             Log.d(TAG, "onReceived0-1:${it.name}")
             binding.tvGlobalEvent01.text = "${getCurrentTime()}-onReceived0-1:${it.name} "
         }
-        CoroutineScope(Dispatchers.Main).subscribeGlobalEvent<GlobalEvent> {
+        CoroutineScope(Dispatchers.Main).subscribeEvent<GlobalEvent> {
             Log.d(TAG, "onReceived0-3:${it}")
             binding.tvGlobalEvent03.text = "${getCurrentTime()}-onReceived0-3:${it.name}"
         }
-        subscribeGlobalEvent<String> {
+        subscribeEvent<String> {
             Log.d(TAG, "onReceived0-2:${it}")
             binding.tvGlobalEvent02.text = "${getCurrentTime()}-onReceived0-2:${it}"
         }
@@ -86,22 +86,22 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun subscribeScopeEvents() {
-        subscribeScopeEvent<ActivityEvent>(lifecycleOwner = this) {
+        subscribeEvent<ActivityEvent>(scope = this) {
             Log.d(TAG, "onReceived1:${it.name}")
             binding.tvActivityEvent1.text = "${getCurrentTime()}-onReceived1:${it.name}"
         }
         //Control Thread
-        subscribeScopeEvent<ActivityEvent>(lifecycleOwner = this, dispatcher = Dispatchers.Main) {
+        subscribeEvent<ActivityEvent>(scope = this, dispatcher = Dispatchers.Main) {
             Log.d(TAG, "onReceived2:${it.name} ${Thread.currentThread().name}")
             binding.tvActivityEvent2.text = "${getCurrentTime()}-onReceived2:${it.name} ${Thread.currentThread().name}"
         }
         //Specify lifecycleState
-        subscribeScopeEvent<ActivityEvent>(lifecycleOwner = this, minLifecycleState = Lifecycle.State.STARTED) {
+        subscribeEvent<ActivityEvent>(scope = this, minLifecycleState = Lifecycle.State.STARTED) {
             Log.d(TAG, "onReceived3:${it.name}  STARTED")
             binding.tvActivityEvent3.text = "${getCurrentTime()}-onReceived3:${it.name} STARTED time"
         }
         //Control Thread + Specify lifecycleState
-        subscribeScopeEvent<ActivityEvent>(lifecycleOwner = this, dispatcher = Dispatchers.IO, minLifecycleState = Lifecycle.State.RESUMED) {
+        subscribeEvent<ActivityEvent>(scope = this, dispatcher = Dispatchers.IO, minLifecycleState = Lifecycle.State.RESUMED) {
             Log.d(TAG, "onReceived4:${it.name} ${Thread.currentThread().name} RESUMED ${Thread.currentThread().name} ")
         }
     }

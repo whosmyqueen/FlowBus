@@ -47,7 +47,7 @@ class TestActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun subscribeGlobalEvents() {
-        subscribeGlobalEvent<GlobalEvent>(isSticky = true) {
+        subscribeEvent<GlobalEvent>(isSticky = true) {
             Log.d(TAG, "onReceived:${it.name}")
             val string = "${binding.tvEventText.text} \r\n"
             binding.tvEventText.text = "${string}${getCurrentTime()}-onReceived:${it.name}"
@@ -75,7 +75,7 @@ class TestActivity : AppCompatActivity() {
         super.onDestroy()
         _binding = null
         removeStickyEvent<GlobalEvent>()
-        removeStickyEvent<GlobalEvent>(this)
+        removeStickyEvent<GlobalEvent>(scope = this)
         clearStickyEvent<GlobalEvent>()
         clearStickyEvent<GlobalEvent>(scope = this)
     }

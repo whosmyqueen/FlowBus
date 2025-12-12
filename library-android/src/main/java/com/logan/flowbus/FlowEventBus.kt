@@ -134,6 +134,7 @@ class FlowEventBus : ViewModel() {
      * due to type mismatch.
      * 使用 try-catch 块捕获 ClassCastException，防止因事件类型不匹配导致应用崩溃。
      */
+    @Suppress("UNCHECKED_CAST")
     private fun <T : Any> handleReceivedEvent(value: Any, onReceived: (T) -> Unit) {
         try {
             // Attempt to cast the Any type to the expected T type.
