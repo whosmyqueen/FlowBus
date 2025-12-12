@@ -1,16 +1,13 @@
-package com.logan.flowbus
+package com.logan.flowbusapp
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.TextUtils.replace
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import com.logan.flowbus.databinding.ActivityTestFragmentBinding
-import com.logan.flowbus.event.ActivityEvent
+import com.logan.flowbusapp.databinding.ActivityTestFragmentBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

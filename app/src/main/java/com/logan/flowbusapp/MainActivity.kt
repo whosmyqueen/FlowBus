@@ -1,4 +1,4 @@
-package com.logan.flowbus
+package com.logan.flowbusapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,9 +10,12 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
-import com.logan.flowbus.databinding.ActivityMainBinding
-import com.logan.flowbus.event.ActivityEvent
-import com.logan.flowbus.event.GlobalEvent
+import com.logan.flowbus.postEvent
+import com.logan.flowbus.subscribeEvent
+import com.logan.flowbusapp.databinding.ActivityMainBinding
+import com.logan.flowbusapp.event.ActivityEvent
+import com.logan.flowbusapp.event.GlobalEvent
+import com.logan.flowbusapp.login.LoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import java.text.SimpleDateFormat
@@ -64,6 +67,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnJumpNextFragmentPage.setOnClickListener {
             startActivity(Intent(this, TestFragmentActivity::class.java))
+        }
+        binding.btnJumpLoginActivity.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 

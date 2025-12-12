@@ -1,4 +1,4 @@
-package com.logan.flowbus
+package com.logan.flowbusapp
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import com.logan.flowbus.databinding.FragmentTestBinding
-import com.logan.flowbus.event.ActivityEvent
-import com.logan.flowbus.event.FragmentEvent
-import com.logan.flowbus.event.GlobalEvent
+import com.logan.flowbus.postEvent
+import com.logan.flowbus.removeStickyEvent
+import com.logan.flowbus.subscribeEvent
+import com.logan.flowbusapp.databinding.FragmentTestBinding
+import com.logan.flowbusapp.event.ActivityEvent
+import com.logan.flowbusapp.event.FragmentEvent
+import com.logan.flowbusapp.event.GlobalEvent
 import kotlinx.coroutines.Dispatchers
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -93,7 +96,7 @@ class TestFragment : Fragment() {
         }
 
         //FragmentEvent
-       subscribeEvent<FragmentEvent>(scope = this@TestFragment) {
+        subscribeEvent<FragmentEvent>(scope = this@TestFragment) {
             Log.d(TAG, "received FragmentEvent1:${it.name}")
             binding.tvFragmentEvent1.text = "${getCurrentTime()}-onReceived1:${it.name} "
         }
@@ -101,7 +104,7 @@ class TestFragment : Fragment() {
             Log.d(TAG, "received FragmentEvent2:${it.name}")
             binding.tvFragmentEvent2.text = "${getCurrentTime()}-onReceived2:${it.name} "
         }
-       subscribeEvent<FragmentEvent>(scope = this@TestFragment, dispatcher = Dispatchers.Main, minLifecycleState = Lifecycle.State.STARTED) {
+        subscribeEvent<FragmentEvent>(scope = this@TestFragment, dispatcher = Dispatchers.Main, minLifecycleState = Lifecycle.State.STARTED) {
             Log.d(TAG, "received FragmentEvent3:${it.name}")
             binding.tvFragmentEvent3.text = "${getCurrentTime()}-onReceived3:${it.name} "
         }

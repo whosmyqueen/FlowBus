@@ -1,4 +1,4 @@
-package com.logan.flowbus
+package com.logan.flowbusapp
 
 import android.app.Application
 

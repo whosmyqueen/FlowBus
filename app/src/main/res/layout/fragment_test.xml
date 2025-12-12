@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/white"
-    tools:context="com.logan.flowbus.MainActivity">
+    tools:context="com.logan.flowbusapp.MainActivity">
 
     <LinearLayout
         android:id="@+id/llGlobalEvent01"

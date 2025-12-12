@@ -5,6 +5,7 @@
     <color name="colorAccent">#158BB8</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="background_secondary">#F5F5F5</color>
     <!--云水-->
     <color name="cloud_water">#BACCD9</color>
     <!--晴山-->

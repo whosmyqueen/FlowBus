@@ -1,4 +1,4 @@
-package com.logan.flowbus
+package com.logan.flowbusapp
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,8 +8,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import com.logan.flowbus.databinding.ActivityTestBinding
-import com.logan.flowbus.event.GlobalEvent
+import com.logan.flowbus.clearStickyEvent
+import com.logan.flowbus.postEvent
+import com.logan.flowbus.removeStickyEvent
+import com.logan.flowbus.subscribeEvent
+import com.logan.flowbusapp.databinding.ActivityTestBinding
+import com.logan.flowbusapp.event.GlobalEvent
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

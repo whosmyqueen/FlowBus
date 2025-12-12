@@ -1,3 +1,3 @@
-package com.logan.flowbus.event
+package com.logan.flowbusapp.event
 
 data class GlobalEvent(val name: String)
