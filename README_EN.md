@@ -34,6 +34,12 @@ Delayed Posting, Lifecycle Awareness, and Ordered Message Reception.
    implementation 'io.github.logan0817:FlowBus:1.0.0' // Replace with the latest version shown by the badge above
     ```
 
+## Demo Effect
+<img src="GIF.gif" width="350" />
+
+> You can also directly download the [Demo App](https://raw.githubusercontent.com/logan0817/FlowBus/master/app/release/app-release.apk) to experience the effect.
+
+
 ## post Examples
 
 ```kotlin

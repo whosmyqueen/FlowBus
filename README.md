@@ -32,6 +32,12 @@ FlowBus支持：Sticky、切换线程、多个订阅、延迟发送、生命周�
    implementation 'io.github.logan0817:FlowBus:1.0.0' // 替换为上方徽章显示的最新版本
     ```
 
+## 效果展示
+<img src="GIF.gif" width="350" />
+
+> 你也可以直接下载 [演示App](https://raw.githubusercontent.com/logan0817/FlowBus/master/app/release/app-release.apk) 体验效果
+
+
 ## 发送实例
 ```kotlin
 //Global Scope
