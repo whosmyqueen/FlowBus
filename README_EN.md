@@ -27,10 +27,10 @@ Delayed Posting, Lifecycle Awareness, and Ordered Message Reception.
     ```
 
 2. Add the dependency to your Module's **build.gradle**
-   [![Maven Central](https://img.shields.io/maven-central/v/io.github.logan0817/FlowBus.svg?label=Latest%20Release)](https://central.sonatype.com/artifact/io.github.logan0817/FlowBus)
+   [![Maven Central](https://img.shields.io/maven-central/v/io.github.logan0817/flowbus.svg?label=Latest%20Release)](https://central.sonatype.com/artifact/io.github.logan0817/flowbus)
 
     ```gradle
-   implementation 'io.github.logan0817:FlowBus:1.0.0' // Replace with the latest version shown by the badge above
+   implementation 'io.github.logan0817:flowbus:1.0.1' // Replace with the latest version shown by the badge above
     ```
 
 ## Demo Effect
@@ -64,10 +64,9 @@ postEvent(GlobalEvent(value = "Delay GlobalEvent"), 1000)
  *  subscribeForever requires specifying the coroutineScope
  */
 val coroutineScope = CoroutineScope(Dispatchers.Main)
-val job = coroutineScope.subscribeEvent<GlobalEvent> {
+coroutineScope.subscribeEvent<GlobalEvent> {
 
 }
-job.cancel()
 
 /** subscribe GlobalScopeEvent
  */
@@ -115,12 +114,10 @@ subscribeEvent<XEvent>(isSticky = true) {
 
 ```kotlin
 /**
- * Permanently remove the event type and its replay cache from the global bus.
+ * Remove specified sticky event stream
  */
+//In GlobalScope
 removeStickyEvent<XEvent>()
-/**
- * Permanently remove the event type and its replay cache from the local bus.
- */
 //In CoroutineScope
 removeStickyEvent<XEvent>(scope = coroutineScope)
 //In Activity
@@ -133,13 +130,10 @@ removeStickyEvent<XEvent>(scope = fragment)
 
 ```kotlin
 /**
- * Clears the replay cache for the global sticky event type T, but keeps the Flow instance.
- */
-clearStickyEvent<GlobalEvent>()
-
-/**
  * Clears the replay cache for the local sticky event type T, but keeps the Flow instance.
  */
+//In GlobalScope
+clearStickyEvent<GlobalEvent>()
 //In CoroutineScope
 clearStickyEvent<XEvent>(scope = coroutineScope)
 //In Activity

@@ -26,10 +26,10 @@ FlowBus支持：Sticky、切换线程、多个订阅、延迟发送、生命周�
     ```
 
 2. 在Module的 **build.gradle** 中添加依赖项
-   [![Maven Central](https://img.shields.io/maven-central/v/io.github.logan0817/flowBus.svg?label=Latest%20Release)](https://central.sonatype.com/artifact/io.github.logan0817/flowBus)
+   [![Maven Central](https://img.shields.io/maven-central/v/io.github.logan0817/flowbus.svg?label=Latest%20Release)](https://central.sonatype.com/artifact/io.github.logan0817/flowbus)
 
     ```gradle
-   implementation 'io.github.logan0817:FlowBus:1.0.0' // 替换为上方徽章显示的最新版本
+   implementation 'io.github.logan0817:flowbus:1.0.1' // 替换为上方徽章显示的最新版本
     ```
 
 ## 效果展示
@@ -61,10 +61,9 @@ postEvent(GlobalEvent(value = "Delay GlobalEvent"), 1000)
  *  在任何地方使用，需要指定 coroutineScope 中
  */
 val coroutineScope = CoroutineScope(Dispatchers.Main)
-val job = coroutineScope.subscribeEvent<GlobalEvent> {
+coroutineScope.subscribeEvent<GlobalEvent> {
 
 }
-job.cancel()
 
 /** 订阅 GlobalEvent
  */
@@ -113,13 +112,10 @@ subscribeEvent<XEvent>(isSticky = true) {
 ```kotlin
 
 /**
- * 从全局总线中永久移除事件类型及其重放缓存
+ * 移除指定的粘性事件流
  */
+//globalScope中
 removeStickyEvent<XEvent>()
-
-/**
- * 从本地总线中永久移除事件类型及其重放缓存
- */
 //coroutineScope中
 removeStickyEvent<XEvent>(scope = coroutineScope)
 //activity中
@@ -133,13 +129,10 @@ removeStickyEvent<XEvent>(scope = fragment)
 ```kotlin
 
 /**
- * 清除全局粘性事件类型 T 的缓存，但保留 Flow 实例。
- */
-clearStickyEvent<XEvent>()
-
-/**
  * 清除本地粘性事件类型 T 的缓存，但保留 Flow 实例。
  */
+//globalScope中
+clearStickyEvent<XEvent>()
 //coroutineScope中
 clearStickyEvent<XEvent>(scope = coroutineScope)
 //activity中
