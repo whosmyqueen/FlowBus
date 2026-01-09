@@ -46,6 +46,12 @@ android {
         disable.add("GradleDependency")
         disable.add("AndroidGradlePluginVersion")
     }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 tasks.withType<KotlinCompile>().configureEach {
