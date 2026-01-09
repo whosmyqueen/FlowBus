@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("kotlin-parcelize")
     kotlin("android")
+    id("maven-publish")
 }
 
 
