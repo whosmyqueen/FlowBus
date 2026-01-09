@@ -86,7 +86,6 @@ class FlowEventBus : ViewModel() {
         isSticky: Boolean,
         onReceived: (T) -> Unit
     ): Job {
-        Log.w(TAG, "subscribe:$eventName")
         return lifecycleOwner.lifecycleScope.launch {
             // Repeat the coroutine block when the host is in the specified lifecycle state.
             // 在指定生命周期状态下重复执行块内的协程。
@@ -163,7 +162,6 @@ class FlowEventBus : ViewModel() {
      * @param timeMillis The delay time for posting (in milliseconds). 延迟发布的时间（毫秒）。
      */
     fun post(eventName: String, value: Any, timeMillis: Long = 0) {
-        Log.w(TAG, "post:$eventName")
         // Attempts to get both normal and sticky event flows (if they exist) and forms a list.
         // getEventFlow ensures the corresponding Flow exists, creating it if it doesn't.
         // 尝试获取普通事件流和粘性事件流（如果存在），并组成列表。
